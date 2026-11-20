@@ -1,0 +1,36 @@
+{
+  "name": "productsphere-backend",
+  "version": "1.0.0",
+  "description": "ProductSphere GraphQL API Backend with Prisma ORM",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "db:seed": "ts-node prisma/seed.ts"
+  },
+  "keywords": [
+    "graphql",
+    "prisma",
+    "postgresql"
+  ],
+  "author": "ProductSphere Team",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "graphql": "^16.9.0",
+    "graphql-yoga": "^5.10.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "prisma": "^5.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}

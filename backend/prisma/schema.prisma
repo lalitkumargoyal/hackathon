@@ -1,0 +1,54 @@
+// This is your Prisma schema file for ProductSphere Commerce Platform
+// Database: PostgreSQL with relational integrity constraints
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Category Model: Hotel type taxonomy (Marriott brands)
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  hotels    Hotel[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([name])
+}
+
+// Hotel Model: Marriott hotel property catalog entity
+model Hotel {
+  id          String        @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  rating      Float
+  imageUrl    String
+  location    String
+  categoryId  String
+  category    Category      @relation(fields: [categoryId], references: [id])
+  bookings    Booking[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([categoryId])
+}
+
+// Booking Model: Hotel booking line item
+model Booking {
+  id        String   @id @default(cuid())
+  nights    Int      @default(1)
+  hotelId   String
+  hotel     Hotel    @relation(fields: [hotelId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([hotelId])
+}

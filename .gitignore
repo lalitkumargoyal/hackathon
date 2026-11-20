@@ -1,0 +1,22 @@
+# Node / Vite (frontend/ has its own .gitignore for these too)
+node_modules/
+dist/
+
+# Local secrets (see .env.example for the template)
+.env
+
+# Real values for deploy/k8s/*-secret.example.yaml go here (copy the
+# example, fill in the copy, apply the copy) - never edit the tracked
+# .example.yaml files in place with real credentials.
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Word's own transient lock file, created while a .docx is open and
+# removed on close - never meant to be committed.
+~$*.docx
+
+#slingshot
+.slingshot/
